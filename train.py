@@ -57,12 +57,12 @@ with active_session():
             if steps % print_every == 0:
                 model.eval()
                 with torch.no_grad():
-                    test_loss, accuracy = validation(model, test_loader, criterion, device)
+                    valid_loss, accuracy = validation(model, valid_loader, criterion, device)
                 model.train()
                 print("Epoch: {}/{}... ".format(e+1, inputs.epochs),
                       "Training Loss: {:.4f}".format(running_loss/print_every), 
-                      "Test Loss: {:.3f}.. ".format(test_loss/len(test_loader)),
-                      "Test Accuracy: {:.3f}".format(accuracy/len(test_loader)))
+                      "Validation Loss: {:.3f}.. ".format(valid_loss/len(valid_loader)),
+                      "Validation Accuracy: {:.3f}".format(accuracy/len(valid_loader)))
                 running_loss = 0
 
 # Save the model
